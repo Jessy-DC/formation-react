@@ -17,7 +17,6 @@ export class StateComponent extends Component {
     // }
 
     handleChange = (event) => {
-        console.log(event.target.value)
         this.setState({
             name : event.target.value
         })

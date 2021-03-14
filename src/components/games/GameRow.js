@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 export class GameRow extends Component {
     constructor(props) {
         super(props);
-        console.log("game ", props.game)
     }
 
     render() {
@@ -16,10 +15,13 @@ export class GameRow extends Component {
         }
 
         return (
-            <tr>
-                <td>{name}</td>
-                <td>{this.props.game.price}</td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>{name}</td>
+                    <td>{this.props.game.price}</td>
+                </tr>
+            </tbody>
+
         )
     }
 }

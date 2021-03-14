@@ -7,9 +7,11 @@ export class GameCategory extends Component {
 
     render() {
         return (
-            <tr>
-                <td>{this.props.category}</td>
-            </tr>
+            <tbody>
+                <tr>
+                    <th colSpan={2}>{this.props.category}</th>
+                </tr>
+            </tbody>
         )
     }
 }

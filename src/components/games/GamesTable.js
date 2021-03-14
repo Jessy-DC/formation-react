@@ -5,14 +5,28 @@ import {GameRow} from "./GameRow";
 export class GamesTable extends Component {
     constructor(props) {
         super(props);
-        console.log("GamesTable ", props.games)
     }
 
     render() {
         const ROWS = []
-        //ROWS.push(<GameRow key={1} />)
-        //ROWS.push(<GameRow key={2} />)
+        const FILTER_TEXT = this.props.filterText
+        const IN_STOCK_ONLY = this.props.inStockOnly
+        let gameCategory
+
         this.props.games.forEach((element) => {
+            if(element.name.toLowerCase().indexOf(FILTER_TEXT.toLowerCase()) === -1) {
+                return
+            }
+
+            if(IN_STOCK_ONLY && !element.stocked) {
+                return
+            }
+
+            if(element.category !== gameCategory) {
+                ROWS.push(<GameCategory category={element.category} />)
+                gameCategory = element.category
+            }
+
             ROWS.push(<GameRow key={element.name} game={element} />)
         })
 
@@ -25,11 +39,8 @@ export class GamesTable extends Component {
                             <th>Price</th>
                         </tr>
                     </thead>
-                    <GameCategory category={"FPS"} />
                     {ROWS}
                 </table>
-
-
             </div>
         )
     }

@@ -3,16 +3,16 @@ import React, {Component} from 'react';
 export class SearchComponent extends Component {
     constructor(props) {
         super(props);
-        this.handleFilterText = this.handleFilterText.bind(this)
+        this.handleFilterTextChange = this.handleFilterTextChange.bind(this)
         this.handleInStockChange = this.handleInStockChange.bind(this)
     }
 
-    handleFilterText(e) {
-        console.log(e.target.value)
+    handleFilterTextChange(e) {
+        this.props.handleFilterTextChange(e.target.value)
     }
 
     handleInStockChange(e) {
-        console.log(e.target.checked)
+        this.props.handleInStockChange(e.target.checked)
     }
 
     render() {
@@ -21,12 +21,14 @@ export class SearchComponent extends Component {
                 <input
                     type="text"
                     placeholder="Search"
-                    onChange={this.handleFilterText}
+                    value={this.props.filterText}
+                    onChange={this.handleFilterTextChange}
                 />
 
                 <input
                     type="checkbox"
                     onChange={this.handleInStockChange}
+                    checked={this.props.inStockOnly}
                 />
                 {' '}
                 Products available only
